@@ -8,12 +8,14 @@ namespace BuilderTestSample.Tests.TestBuilders
     public const string VALID_FIRST_NAME = "Bruce";
     public const string VALID_LAST_NAME = "Lee";
     public const int VALID_CREDIT_RATING = 201;
+    public const decimal VALID_TOTAL_PURCHASES = 0;
 
     private int _id;
     private string _firstName;
     private string _lastName;
+    private decimal _totalPurchases;
     private Address _homeAddress;
-
+    
     private Customer _customer;
 
 
@@ -24,10 +26,17 @@ namespace BuilderTestSample.Tests.TestBuilders
         HomeAddress = _homeAddress,
         FirstName = _firstName,
         LastName = _lastName,
-        CreditRating = _creditRating
+        CreditRating = _creditRating,
+        TotalPurchases = _totalPurchases
       };
 
       return _customer;
+    }
+
+    public CustomerBuilder TotalPurchases(decimal totalPurchases)
+    {
+        _totalPurchases = totalPurchases;
+        return this;
     }
 
     public CustomerBuilder Address(Address address)
@@ -69,6 +78,7 @@ namespace BuilderTestSample.Tests.TestBuilders
       _firstName = VALID_FIRST_NAME;
       _lastName = VALID_LAST_NAME;
       _creditRating = VALID_CREDIT_RATING;
+      _totalPurchases = VALID_TOTAL_PURCHASES;
       _homeAddress = new Address();
       
       return this;

@@ -106,6 +106,22 @@ namespace BuilderTestSample.Tests
             Assert.Throws<InsufficientCreditException>(() => _orderService.PlaceOrder(order));
         }
 
+         [Fact]
+         public void ThrowsExceptionGivenCustomerWithTOtalPurchasesLessThan0()
+        {
+            var customer = _customerBuilder
+                                .WithTestValues()
+                                .TotalPurchases(-1)
+                                .Build();
+
+            var order = _orderBuilder
+                            .WithTestValues()
+                            .Customer(customer)
+                            .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }   
+
        
     }
 }
