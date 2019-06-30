@@ -79,7 +79,9 @@ namespace BuilderTestSample.Tests.TestBuilders
       _lastName = VALID_LAST_NAME;
       _creditRating = VALID_CREDIT_RATING;
       _totalPurchases = VALID_TOTAL_PURCHASES;
-      _homeAddress = new Address();
+
+      var addressBuilder = new  AddressBuilder();
+      _homeAddress = addressBuilder.WithTestValues().Build();
       
       return this;
     }

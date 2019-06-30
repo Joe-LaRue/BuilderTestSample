@@ -16,7 +16,6 @@ namespace BuilderTestSample.Services
 
         private void ValidateOrder(Order order)
         {
-            // throw InvalidOrderException unless otherwise noted.
             if (order.Id != 0) throw new InvalidOrderException("Order ID must be 0.");
             if (order.TotalAmount <= 0) throw new InvalidOrderException("Order amount must not be <= 0.");
             if (order.Customer == null ) throw new InvalidOrderException("Order must have a customer");
@@ -25,9 +24,6 @@ namespace BuilderTestSample.Services
 
         private void ValidateCustomer(Customer customer)
         {
-            // throw InvalidCustomerException unless otherwise noted
-            // create a CustomerBuilder to implement the tests for these scenarios
-
             if(customer.Id <= 0) throw new InvalidCustomerException("Customer.ID must not be <= 0");
             if(customer.HomeAddress == null ) throw new InvalidCustomerException("Customer address must not be null");  
             if(string.IsNullOrEmpty(customer.FirstName) || string.IsNullOrEmpty(customer.LastName)) 
@@ -43,10 +39,8 @@ namespace BuilderTestSample.Services
 
         private void ValidateAddress(Address homeAddress)
         {
-            // throw InvalidAddressException unless otherwise noted
-            // create an AddressBuilder to implement the tests for these scenarios
-
             // TODO: street1 is required (not null or empty)
+            if(string.IsNullOrEmpty(homeAddress.Street1)) throw new InvalidAddressException("Address street 1 must have a value!");
             // TODO: city is required (not null or empty)
             // TODO: state is required (not null or empty)
             // TODO: postalcode is required (not null or empty)
