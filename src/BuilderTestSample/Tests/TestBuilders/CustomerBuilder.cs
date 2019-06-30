@@ -8,7 +8,9 @@ namespace BuilderTestSample.Tests.TestBuilders
     public const string VALID_FIRST_NAME = "Bruce";
     public const string VALID_LAST_NAME = "Lee";
     public const int VALID_CREDIT_RATING = 201;
+    public const int VALID_CREDIT_RATING_FOR_EXPEDITED_ORDER = 501;
     public const decimal VALID_TOTAL_PURCHASES = 0;
+    public const decimal VALID_TOTAL_PURCHASES_FOR_EXPEDITED_ORDER = 5001;
 
     private int _id;
     private string _firstName;

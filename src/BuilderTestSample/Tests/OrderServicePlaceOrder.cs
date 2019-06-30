@@ -243,6 +243,24 @@ namespace BuilderTestSample.Tests
       Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
     }
 
+    [Fact]
+    public void OrderIsExpeditedGivenCreditRatingAndTotalPurchasesValid()
+    {
+      var customer = _customerBuilder
+                       .WithTestValues()
+                       .CreditRating(CustomerBuilder.VALID_CREDIT_RATING_FOR_EXPEDITED_ORDER)
+                       .TotalPurchases(CustomerBuilder.VALID_TOTAL_PURCHASES_FOR_EXPEDITED_ORDER)
+                       .Build();
+
+      var order = _orderBuilder
+                      .WithTestValues()
+                      .Customer(customer)
+                      .Build();
+
+      _orderService.PlaceOrder(order);
+
+      Assert.True(order.IsExpedited);
+    }
 
   }
 }

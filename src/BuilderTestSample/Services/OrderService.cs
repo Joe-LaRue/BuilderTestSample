@@ -44,12 +44,15 @@ namespace BuilderTestSample.Services
       if (string.IsNullOrEmpty(homeAddress.State)) throw new InvalidAddressException("state must have a value!");
       if (string.IsNullOrEmpty(homeAddress.PostalCode)) throw new InvalidAddressException("PostalCode must have a value!");
       if (string.IsNullOrEmpty(homeAddress.Country)) throw new InvalidAddressException("country must have a value!");
-
     }
 
     private void ExpediteOrder(Order order)
     {
       // TODO: if credit rating > 500 and total purchases > 5000 set IsExpedited to true
+      if (order.Customer.CreditRating > 500 && order.Customer.TotalPurchases > 5000)
+      {
+          order.IsExpedited = true;
+      }
     }
 
     private void AddOrderToCustomerHistory(Order order)
