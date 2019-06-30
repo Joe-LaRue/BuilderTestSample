@@ -48,9 +48,10 @@ namespace BuilderTestSample.Tests
         [Fact]
          public void ThrowsExceptionGivenCustomerWithZeroId()
         {
+            var customer = _customerBuilder.WithTestValues().Id(0).Build();
             var order = _orderBuilder
                             .WithTestValues()
-                            .Customer(new Customer(0))
+                            .Customer(customer)
                             .Build();
 
             Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
@@ -62,6 +63,23 @@ namespace BuilderTestSample.Tests
             var customer = _customerBuilder
                                 .WithTestValues()
                                 .Address(null)
+                                .Build();
+
+            var order = _orderBuilder
+                            .WithTestValues()
+                            .Customer(customer)
+                            .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
+
+         [Fact]
+         public void ThrowsExceptionGivenCustomerWithNoFirstAndLastName()
+        {
+            var customer = _customerBuilder
+                                .WithTestValues()
+                                .FirstName("")
+                                .LastName("")
                                 .Build();
 
             var order = _orderBuilder
