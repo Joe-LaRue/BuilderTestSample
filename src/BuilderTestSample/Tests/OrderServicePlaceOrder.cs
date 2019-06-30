@@ -1,4 +1,5 @@
 using BuilderTestSample.Exceptions;
+using BuilderTestSample.Model;
 using BuilderTestSample.Services;
 using BuilderTestSample.Tests.TestBuilders;
 using Xunit;
@@ -32,14 +33,26 @@ namespace BuilderTestSample.Tests
             Assert.Throws<InvalidOrderException>(() => _orderService.PlaceOrder(order));
         }
 
-         [Fact]
+        [Fact]
          public void ThrowsExceptionGivenOrderWithNullCustomer()
         {
             var order = _orderBuilder
                             .WithTestValues()
+                            .Customer(null)
                             .Build();
 
             Assert.Throws<InvalidOrderException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
+         public void ThrowsExceptionGivenCustomerWithZeroId()
+        {
+            var order = _orderBuilder
+                            .WithTestValues()
+                            .Customer(new Customer(0))
+                            .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
         }
     }
 }
