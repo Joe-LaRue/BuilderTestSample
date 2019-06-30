@@ -1,3 +1,6 @@
+#This repo is the code kata described below as i work through the exercise
+
+
 # Builder Test Sample
 Show how to use a builder with unit tests.
 
