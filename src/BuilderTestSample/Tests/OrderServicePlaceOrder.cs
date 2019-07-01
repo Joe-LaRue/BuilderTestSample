@@ -262,6 +262,17 @@ namespace BuilderTestSample.Tests
       Assert.True(order.IsExpedited);
     }
 
+    [Fact]
+    public void OrderIsAddedToCustomerOrderList()
+    {
+      var customer = _customerBuilder.WithTestValues().Build();
+      var order = _orderBuilder.WithTestValues().Customer(customer).Build();
+
+      _orderService.PlaceOrder(order);
+
+      Assert.True(customer.OrderHistory.Count == 1);
+    }
+
   }
 }
 
